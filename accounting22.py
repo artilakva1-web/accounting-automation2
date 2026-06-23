@@ -472,10 +472,11 @@ if f1 and f2:
                 return ''
 
         return (
-            d.style
-            .applymap(color_debt, subset=['ვალები'])
-            .applymap(color_adv, subset=['ავანსები'])
-            .format({'ვალები': '{:,.2f}', 'ავანსები': '{:,.2f}'})
+        d.style
+        .map(color_debt, subset=['ვალები'])
+        .map(color_adv, subset=['ავანსები'])
+        .format({'ვალები': '{:,.2f}', 'ავანსები': '{:,.2f}'})
+    )
         )
 
     for p in df1['პროექტის დასახელება'].unique():
