@@ -230,7 +230,7 @@ def generate_pdf(df):
 
     sum_df = pd.DataFrame(summary_data)
     total_debts = sum_df['ვალი'].sum()
-    total_advances = sum_df['ავანსი'].sum()
+    total_advances = abs(sum_df['ავანსი'].sum())
     net_balance = total_debts - total_advances
 
     # =========================== PAGE 1 — EXECUTIVE SUMMARY ===========================
@@ -426,7 +426,8 @@ if f1 and f2:
     st.subheader("📈 ფინანსური მიმოხილვა")
 
     total_debt = df1['ვალები'].sum()
-    total_advance = df1['ავანსები'].sum()
+    # abs() უზრუნველყოფს, რომ ავანსი ყოველთვის დადებითი იყოს და ნიშნები არ აირიოს
+    total_advance = abs(df1['ავანსები'].sum())
     net_balance = total_debt - total_advance
     debtor_rows = df1[df1['ვალები'] > 0]
     not_found = (debtor_rows['ტელეფონი'] == "ნომერი ვერ მოიძებნა").sum()
