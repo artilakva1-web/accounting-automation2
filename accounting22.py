@@ -417,6 +417,9 @@ if f1 and f2:
 
     for col in ['ვალები', 'ავანსები']:
         df1[col] = df1[col].apply(safe_float)
+        
+    # აქცევს ყველა ავანსს დადებით რიცხვად, რათა PDF-ის ფილტრებმა (ავანსები > 0) სწორად იპოვონ ისინი
+    df1['ავანსები'] = df1['ავანსები'].abs()
 
     with st.spinner('მუშავდება...'):
         df1[['ტელეფონი', 'შენიშვნა']] = df1.apply(lambda row: pd.Series(match_phone(row, df2)), axis=1)
